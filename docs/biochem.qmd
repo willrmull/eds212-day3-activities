@@ -7,23 +7,30 @@ editor: visual
 
 #Import
 ```{r}
+#Load required packages
 library(tidyverse)
 library(here)
 library(janitor)
 
+# Read in data set using read_csv and here funtions
+# Convert column names to lower camel case using clean names
 toolik_biochem <- read.csv(here::here("data", "2011_Kling_Akchem.csv"), na.strings = c(".", "")) %>% clean_names()
-inlet_biochem <- toolik_biochem %>% select(c("p_h", "doc_u_m", "tdn_u_m"))
+inlet_biochem <- toolik_biochem %>% 
+  filter(site ==c("Toolik Inlet")) %>%
+        select( c("p_h", "doc_u_m", "tdn_u_m"))
 
+# Print mean of all columns manualy
+print(paste("PH: ", mean(inlet_biochem[[1]], na.rm = TRUE)))
+print(paste("Disolved Carbon: ", mean(inlet_biochem[[2]], na.rm = TRUE)))
+print(paste("Disolved nitrogen: ", mean(inlet_biochem[[3]], na.rm = TRUE)))
 
-print(mean(inlet_biochem[[1]], na.rm = TRUE))
-print(mean(inlet_biochem[[2]], na.rm = TRUE))
-print(mean(inlet_biochem[[3]], na.rm = TRUE))
-
+# Print means using a for loop
 for (i in seq_along(inlet_biochem)){
   mean <- mean(inlet_biochem[[i]], na.rm = TRUE)
   print(mean)
 }
 
+# Find means using th eapply function
 apply(inlet_biochem, 2, mean, na.rm = TRUE)
 ```
 
