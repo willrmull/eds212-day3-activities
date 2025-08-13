@@ -1,0 +1,64 @@
+---
+title: "conditionals_loops"
+format: html
+editor: visual
+---
+
+## Day 3 Activities
+
+# Task 1
+```{r}
+pm2_5 <- 108
+
+if(pm2_5 >= 150) {
+  print("Health risk present")
+} else if(100 <= pm2_5 & pm2_5 < 150) {
+  print("Unhealthy for sensitive groups")
+} else {
+  print("Low to moderate risk")
+}
+```
+# Task 2
+# Print if the string contains world whale 
+```{r}
+species <- "blue whale"
+if (grepl("whale", species) == TRUE) {
+  print("You found a whale!")
+} 
+```
+#Task 3
+```{r}
+base_burrito <- 6.50
+main_ingredient <- "steak"
+if (main_ingredient == "veggie") {
+  print(base_burrito)
+} else if (main_ingredient == "chicken") {
+  print(base_burrito + 3.0)
+} else if (main_ingredient == "steak") {
+  print(base_burrito + 3.25)
+}
+```
+
+## For Loops
+
+#Task 4
+```{r}
+fish <- c(8, 10, 12, 23)
+species <- c("goldfish", "tetras", "guppies", "mollies")
+
+for(i in seq_along(fish)) {
+    print(species[i])
+    print(fish[i] / sum(fish))
+}
+```
+#Task 5
+```{r}
+months <- month.name
+
+for(i in seq_along(months)) {
+    month <- months[i]
+    print(paste(month, " is month ", i))
+}
+```
+
+
